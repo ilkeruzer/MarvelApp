@@ -4,6 +4,7 @@ import com.ilkeruzer.marvel.base.BaseViewModel
 import com.ilkeruzer.marvel.model.Post
 import com.ilkeruzer.marvel.remote.ApiService
 import com.ilkeruzer.marvel.remote.IResponseStatus
+import com.ilkeruzer.marvel.remote.model.Wrapper
 
 /**
  * Created by İlker Üzer on 8.05.2020.
@@ -11,13 +12,12 @@ import com.ilkeruzer.marvel.remote.IResponseStatus
 
 class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
 
-
-     fun postsAPI() {
-        apiService.getNewsInfo()
-            .apiResponse(object : IResponseStatus<List<Post>> {
-                override fun onSuccess(t: List<Post>) {
+    fun getCharacters() {
+        apiService.getCharacters()
+            .apiResponse(object : IResponseStatus<Wrapper> {
+                override fun onSuccess(t: Wrapper) {
+                    println(t)
                     println("onSuccess")
-                    t.forEach { print(it.toString()) }
                 }
 
                 override fun onUnauthorized() {
@@ -29,7 +29,7 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
                 }
 
                 override fun onFailed() {
-                   println("onFailed")
+                    println("onFailed")
                 }
 
             })

@@ -1,9 +1,10 @@
 package com.ilkeruzer.marvel.remote
 
-import com.ilkeruzer.marvel.model.Post
+import com.ilkeruzer.marvel.remote.model.Wrapper
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
  * Created by İlker Üzer on 8.05.2020.
@@ -11,6 +12,11 @@ import retrofit2.http.GET
 
 interface IApiService {
 
-    @GET("posts")
-    fun getPosts(): Observable<Response<List<Post>>>
+    @GET("characters")
+    fun getCharactersEP(
+        @Query("ts") ts: String?,
+        @Query("apikey") apiKey: String?,
+        @Query("hash") hash: String?
+    ) : Observable<Response<Wrapper>>
+
 }
