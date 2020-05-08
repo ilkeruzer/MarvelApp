@@ -1,7 +1,8 @@
-package com.ilkeruzer.marvel
+package com.ilkeruzer.marvel.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ilkeruzer.marvel.R
 
 class MainActivity : AppCompatActivity() {
 
