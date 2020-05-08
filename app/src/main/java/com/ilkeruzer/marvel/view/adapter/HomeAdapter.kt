@@ -2,7 +2,6 @@ package com.ilkeruzer.marvel.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.ilkeruzer.marvel.base.BaseRecyclerAdapter
 import com.ilkeruzer.marvel.base.IBaseListener

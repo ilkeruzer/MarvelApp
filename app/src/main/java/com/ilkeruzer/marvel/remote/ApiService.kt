@@ -9,14 +9,16 @@ import com.ilkeruzer.marvel.util.KeyUtil
  */
 class ApiService(var iApiService: IApiService) {
 
-
-    fun getCharacters(): ApiServiceGateway<Wrapper> {
+    fun getCharacters(page: Int): ApiServiceGateway<Wrapper> {
         return ApiServiceGateway(iApiService.getCharactersEP(KeyUtil.ts.toString(),
             BuildConfig.PUBLIC_KEY,
-            KeyUtil.getApiKey()
+            KeyUtil.getApiKey(),
+            page
             )
         )
     }
+
+
 
 
 }

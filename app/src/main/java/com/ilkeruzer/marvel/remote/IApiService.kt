@@ -16,7 +16,8 @@ interface IApiService {
     fun getCharactersEP(
         @Query("ts") ts: String?,
         @Query("apikey") apiKey: String?,
-        @Query("hash") hash: String?
+        @Query("hash") hash: String?,
+        @Query("limit") limit: Int?
     ) : Observable<Response<Wrapper>>
 
 }

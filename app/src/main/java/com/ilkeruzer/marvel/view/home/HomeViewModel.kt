@@ -19,7 +19,7 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
     private val charactersLiveData = MutableLiveData<List<Characters>>()
 
     fun getCharacters() {
-        apiService.getCharacters()
+        apiService.getCharacters(30)
             .apiResponse(object : IResponseStatus<Wrapper> {
                 override fun onSuccess(t: Wrapper) {
                     println("onSuccess")
