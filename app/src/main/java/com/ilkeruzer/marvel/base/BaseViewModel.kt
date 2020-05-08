@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
  * Created by İlker Üzer on 8.05.2020.
  */
 
-open class BaseViewModel : ViewModel(), LifecycleObserver {
+open class BaseViewModel : ViewModel(), LifecycleObserver,IBase {
 
     private val compositeDisposable = CompositeDisposable()
 

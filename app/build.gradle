@@ -88,5 +88,10 @@ dependencies {
     //MD5 Hash
     implementation 'com.github.ihimanshurawat:Hasher:1.2'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+
 
 }

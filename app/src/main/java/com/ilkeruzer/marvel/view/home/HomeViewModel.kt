@@ -1,7 +1,11 @@
 package com.ilkeruzer.marvel.view.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.ilkeruzer.marvel.base.BaseViewModel
-import com.ilkeruzer.marvel.model.Post
+import com.ilkeruzer.marvel.base.IBase.Companion.STATUS
+import com.ilkeruzer.marvel.base.IBase.Companion.SUCCESS
+import com.ilkeruzer.marvel.model.Characters
 import com.ilkeruzer.marvel.remote.ApiService
 import com.ilkeruzer.marvel.remote.IResponseStatus
 import com.ilkeruzer.marvel.remote.model.Wrapper
@@ -12,12 +16,16 @@ import com.ilkeruzer.marvel.remote.model.Wrapper
 
 class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
 
+    private val charactersLiveData = MutableLiveData<List<Characters>>()
+
     fun getCharacters() {
         apiService.getCharacters()
             .apiResponse(object : IResponseStatus<Wrapper> {
                 override fun onSuccess(t: Wrapper) {
-                    println(t)
                     println("onSuccess")
+                    if (t.code == SUCCESS && t.status.equals(STATUS)) {
+                        t.data?.characterList.let { charactersLiveData.value = it }
+                    }
                 }
 
                 override fun onUnauthorized() {
@@ -33,5 +41,9 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
                 }
 
             })
+    }
+
+    fun getCharactersLiveData() : LiveData<List<Characters>> {
+        return charactersLiveData
     }
 }
