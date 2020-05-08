@@ -22,10 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "SERVER_URL", "\"http://192.168.1.25/\""
+            buildConfigField "String", "PRIVATE_KEY", "\"b58969faa739dca1880ffc91c2585697dcab29b1\""
+            buildConfigField "String", "PUBLIC_KEY", "\"1a2f5476f6d06006f7a0ee829bfbb3c3\""
+
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", "\"http://192.168.1.25/\""
+            buildConfigField "String", "PRIVATE_KEY", "\"b58969faa739dca1880ffc91c2585697dcab29b1\""
+            buildConfigField "String", "PUBLIC KEY", "\"1a2f5476f6d06006f7a0ee829bfbb3c3\""
         }
     }
 
@@ -77,5 +84,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //MD5 Hash
+    implementation 'com.github.ihimanshurawat:Hasher:1.2'
+
 
 }
