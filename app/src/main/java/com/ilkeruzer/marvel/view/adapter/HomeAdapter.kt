@@ -13,7 +13,7 @@ import com.ilkeruzer.marvel.util.ImageLoader
  * Created by İlker Üzer on 8.05.2020.
  */
 class HomeAdapter (
-    private val list: MutableList<Characters>,
+    private val list: ArrayList<Characters>,
     private val listener: IBaseListener.Adapter<Characters>
 ) : BaseRecyclerAdapter<Characters>(list) {
 
@@ -44,5 +44,9 @@ class HomeAdapter (
 
         }
 
+    }
+
+    fun getList(): ArrayList<Characters> {
+        return list
     }
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by İlker Üzer on 8.05.2020.
  */
 
-abstract class BaseRecyclerAdapter<T>(private val list: MutableList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseRecyclerAdapter<T>(private val list: ArrayList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     protected abstract fun onBindBaseViewHolder(
         holder: RecyclerView.ViewHolder?,
