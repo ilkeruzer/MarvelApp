@@ -42,6 +42,7 @@ class HomeAdapter (
             ImageLoader.normalImage(imageView,imageURL)
             textView.text = characters.name
 
+            itemView.setOnClickListener { listener.onItemClick(characters,adapterPosition) }
         }
 
     }

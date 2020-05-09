@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ilkeruzer.marvel.R
 import com.ilkeruzer.marvel.base.BaseFragment
 import com.ilkeruzer.marvel.base.IBaseListener
 import com.ilkeruzer.marvel.custom.EndlessRecyclerOnScrollListener
@@ -21,6 +23,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeAdapter: HomeAdapter
     var page = 1
+    private val list = ArrayList<Characters>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = vM
@@ -40,7 +43,9 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
         super.onViewCreated(view, savedInstanceState)
         binding.homeRecList.setRecyclerView(true)
         binding.homeRecList.setGridColumn(3)
-        viewModel.getCharacters(0)
+        if (list.isEmpty()) {
+            viewModel.getCharacters(0)
+        }
         setAdapter()
         onScroll()
 
@@ -48,6 +53,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
             homeAdapter.getList().addAll(it!!)
             homeAdapter.notifyDataSetChanged()
             binding.progress.visibility = View.GONE
+
         })
 
     }
@@ -72,17 +78,22 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
     }
 
     private fun setAdapter() {
-        val list = ArrayList<Characters>()
         homeAdapter = HomeAdapter(list,this)
         binding.homeRecList.adapter = homeAdapter
     }
 
-
-
-
+    override fun onResume() {
+        super.onResume()
+        setAdapter()
+    }
 
     override fun onItemClick(item: Characters, position: Int) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putLong("id", item.id!!)
+        bundle.putString("name",item.name!!)
+        val url = item.thumbnail!!.path + "." + item.thumbnail.extension
+        bundle.putString("image",url)
+        findNavController().navigate(R.id.homeToDetail,bundle)
     }
 
 
