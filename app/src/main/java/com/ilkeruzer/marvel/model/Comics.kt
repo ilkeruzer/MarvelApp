@@ -14,5 +14,9 @@ data class Comics(
 
     @SerializedName("title")
     @Expose
-    val title: String? = null
+    val title: String? = null,
+
+    @SerializedName("description")
+    @Expose
+    val description: String? = null
 )

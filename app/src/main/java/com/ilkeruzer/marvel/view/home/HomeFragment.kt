@@ -91,6 +91,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
         val bundle = Bundle()
         bundle.putInt("id", item.id!!)
         bundle.putString("name",item.name!!)
+        bundle.putString("description",item.description)
         val url = item.thumbnail!!.path + "." + item.thumbnail.extension
         bundle.putString("image",url)
         findNavController().navigate(R.id.homeToDetail,bundle)

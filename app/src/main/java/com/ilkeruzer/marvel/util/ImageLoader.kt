@@ -10,10 +10,10 @@ import com.ilkeruzer.marvel.R
 object ImageLoader {
 
     fun normalImage(imageView: ImageView, url: String) {
-        Glide.with(imageView)  //2
-            .load(url) //3
-            .centerCrop() //4
+        Glide.with(imageView)
+            .load(url)
+            .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
-            .into(imageView) //8
+            .into(imageView)
     }
 }

@@ -16,6 +16,10 @@ data class Characters (
     @Expose
     val name: String? = null,
 
+    @SerializedName("description")
+    @Expose
+    val description: String? = null,
+
     @SerializedName("thumbnail")
     @Expose
     val thumbnail: Thumbnail? = null
