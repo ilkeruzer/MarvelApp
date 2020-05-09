@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.remote.model
+package com.ilkeruzer.marvel.remote.model.comics
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -7,7 +7,7 @@ import java.io.Serializable
 /**
  * Created by İlker Üzer on 8.05.2020.
  */
-data class Wrapper(
+data class WrapperComics(
     @SerializedName("code")
     @Expose
     val code: Int? = null,
@@ -22,5 +22,5 @@ data class Wrapper(
 
     @SerializedName("data")
     @Expose
-    val data: Data? = null
+    val dataComics: DataComics? = null
 ): Serializable

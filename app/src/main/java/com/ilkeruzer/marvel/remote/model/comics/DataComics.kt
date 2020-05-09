@@ -1,14 +1,14 @@
-package com.ilkeruzer.marvel.remote.model
+package com.ilkeruzer.marvel.remote.model.comics
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.ilkeruzer.marvel.model.Characters
+import com.ilkeruzer.marvel.model.Comics
 
 /**
  * Created by İlker Üzer on 8.05.2020.
  */
 
-data class Data(
+data class DataComics(
     @SerializedName("offset")
     @Expose
     val offset: Int? = null,
@@ -27,5 +27,5 @@ data class Data(
 
     @SerializedName("results")
     @Expose
-    val characterList: List<Characters>? = null
+    val characterList: List<Comics>? = null
 )

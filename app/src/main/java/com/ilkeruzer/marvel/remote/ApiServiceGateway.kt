@@ -59,6 +59,7 @@ class ApiServiceGateway<T>(observable: Observable<Response<T>>) {
             val statusCode = throwable.code()
             // handle different HTTP error codes here (4xx)
             Log.e(TAG, "handleError: $statusCode")
+            Log.e(TAG, "handleError: ${throwable.message()}")
         } else if (throwable is SocketTimeoutException) {
             // handle timeout from Retrofit
         } else if (throwable is IOException) {
@@ -71,6 +72,7 @@ class ApiServiceGateway<T>(observable: Observable<Response<T>>) {
         if (response.errorBody() != null) {
             try {
                 Log.e(TAG, "errorBody: " + response.errorBody())
+                Log.e(TAG, "errorBody: " + response.message())
             } catch (e: Exception) {
                 Log.e(TAG, "e: " + e.message)
             }

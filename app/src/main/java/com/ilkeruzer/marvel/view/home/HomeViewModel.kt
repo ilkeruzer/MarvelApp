@@ -8,7 +8,7 @@ import com.ilkeruzer.marvel.base.IBase.Companion.SUCCESS
 import com.ilkeruzer.marvel.model.Characters
 import com.ilkeruzer.marvel.remote.ApiService
 import com.ilkeruzer.marvel.remote.IResponseStatus
-import com.ilkeruzer.marvel.remote.model.Wrapper
+import com.ilkeruzer.marvel.remote.model.characters.WrapperCharacters
 
 /**
  * Created by İlker Üzer on 8.05.2020.
@@ -20,11 +20,11 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
 
     fun getCharacters(offset: Int) {
         apiService.getCharacters(30,offset)
-            .apiResponse(object : IResponseStatus<Wrapper> {
-                override fun onSuccess(t: Wrapper) {
+            .apiResponse(object : IResponseStatus<WrapperCharacters> {
+                override fun onSuccess(t: WrapperCharacters) {
                     println("onSuccess")
                     if (t.code == SUCCESS && t.status.equals(STATUS)) {
-                        t.data?.characterList.let { charactersLiveData.value = it }
+                        t.dataCharacters?.characterList.let { charactersLiveData.value = it }
                     }
                 }
 

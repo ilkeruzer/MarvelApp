@@ -89,7 +89,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
 
     override fun onItemClick(item: Characters, position: Int) {
         val bundle = Bundle()
-        bundle.putLong("id", item.id!!)
+        bundle.putInt("id", item.id!!)
         bundle.putString("name",item.name!!)
         val url = item.thumbnail!!.path + "." + item.thumbnail.extension
         bundle.putString("image",url)
