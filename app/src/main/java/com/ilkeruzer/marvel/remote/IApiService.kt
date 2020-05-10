@@ -31,6 +31,7 @@ interface IApiService {
         @Query("hash") hash: String?,
         @Query("limit") limit: Int?,
         @Query("dateRange") dateRange: String?
+      // @Query("orderBy") focDate: String = "-focDate"
     ): Observable<Response<WrapperComics>>
 
 }

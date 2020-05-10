@@ -74,6 +74,8 @@ class DetailFragment : BaseFragment<DetailViewModel>(), IBaseListener.Adapter<Co
         binding.recList.adapter = adapter
 
         viewModel.getComicsLiveData().observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) binding.errorText.visibility = View.VISIBLE
+            binding.progress.visibility = View.GONE
             adapter.getList().addAll(it)
             adapter.notifyDataSetChanged()
             it.forEach { it1 -> println("id: ${it1.id}") }

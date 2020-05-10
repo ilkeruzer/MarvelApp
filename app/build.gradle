@@ -98,5 +98,4 @@ dependencies {
     implementation "androidx.paging:paging-rxjava2:$paging_version"
 
 
-
 }

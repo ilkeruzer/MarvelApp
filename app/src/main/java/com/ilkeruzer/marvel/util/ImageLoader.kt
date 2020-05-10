@@ -12,7 +12,7 @@ object ImageLoader {
     fun normalImage(imageView: ImageView, url: String) {
         Glide.with(imageView)
             .load(url)
-            .centerCrop()
+            .fitCenter()
             .placeholder(R.drawable.ic_launcher_background)
             .into(imageView)
     }

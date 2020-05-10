@@ -44,17 +44,17 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
         binding.homeRecList.setRecyclerView(true)
         binding.homeRecList.setGridColumn(3)
         if (list.isEmpty()) {
-            viewModel.getCharacters(0)
+            viewModel.getCharacters(0).observe(viewLifecycleOwner, Observer {
+                homeAdapter.getList().addAll(it!!)
+                homeAdapter.notifyDataSetChanged()
+                binding.progress.visibility = View.GONE
+
+            })
+        } else {
+            binding.progress.visibility = View.GONE
         }
         setAdapter()
         onScroll()
-
-        viewModel.getCharactersLiveData().observe(viewLifecycleOwner, Observer {
-            homeAdapter.getList().addAll(it!!)
-            homeAdapter.notifyDataSetChanged()
-            binding.progress.visibility = View.GONE
-
-        })
 
     }
 
@@ -74,7 +74,12 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
 
     private fun addLoadMoreData() {
         binding.progress.visibility = View.VISIBLE
-        viewModel.getCharacters((page++)*30)
+        viewModel.getCharacters((page++)*30).observe(viewLifecycleOwner, Observer {
+            homeAdapter.getList().addAll(it!!)
+            homeAdapter.notifyDataSetChanged()
+            binding.progress.visibility = View.GONE
+
+        })
     }
 
     private fun setAdapter() {
@@ -84,7 +89,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(), IBaseListener.Adapter<Charac
 
     override fun onResume() {
         super.onResume()
-        setAdapter()
+        viewModel.unSubscribeViewModel()
     }
 
     override fun onItemClick(item: Characters, position: Int) {

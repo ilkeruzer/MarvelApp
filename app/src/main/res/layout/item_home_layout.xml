@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="170dp"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="20sp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/favoriteImageCardView"
-        android:layout_width="94dp"
+        android:layout_width="110dp"
         android:layout_height="96dp"
         app:cardCornerRadius="@dimen/image_card_radius"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +25,17 @@
 
     <TextView
         android:id="@+id/nameText"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="asdasdas"
+        android:layout_marginTop="4dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/favoriteImageCardView"
         app:layout_constraintStart_toStartOf="@+id/favoriteImageCardView"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteImageCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteImageCardView"
+        android:gravity="center_horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

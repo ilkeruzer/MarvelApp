@@ -4,12 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ilkeruzer.marvel.base.BaseViewModel
 import com.ilkeruzer.marvel.base.IBase
-import com.ilkeruzer.marvel.model.Characters
 import com.ilkeruzer.marvel.model.Comics
 import com.ilkeruzer.marvel.remote.ApiService
 import com.ilkeruzer.marvel.remote.IResponseStatus
-import com.ilkeruzer.marvel.remote.model.characters.WrapperCharacters
 import com.ilkeruzer.marvel.remote.model.comics.WrapperComics
+import com.ilkeruzer.marvel.util.DateUtil
 
 /**
  * Created by İlker Üzer on 9.05.2020.
@@ -20,9 +19,10 @@ class DetailViewModel(private val service: ApiService) : BaseViewModel() {
 
 
     fun getComics(characterId: Int) {
+        println("Date : ${DateUtil.getDateDiff()}")
         service.getComics(
             characterId,
-            "2005-01-01,2020-01-02")
+            DateUtil.getDateDiff())
             .apiResponse(object : IResponseStatus<WrapperComics> {
                 override fun onSuccess(t: WrapperComics) {
                     println("onSuccess getComics")

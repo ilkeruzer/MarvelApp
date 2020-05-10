@@ -18,7 +18,8 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
 
     private val charactersLiveData = MutableLiveData<List<Characters>>()
 
-    fun getCharacters(offset: Int) {
+    fun getCharacters(offset: Int) :  LiveData<List<Characters>>{
+        val charactersLiveData = MutableLiveData<List<Characters>>()
         apiService.getCharacters(30,offset)
             .apiResponse(object : IResponseStatus<WrapperCharacters> {
                 override fun onSuccess(t: WrapperCharacters) {
@@ -41,9 +42,8 @@ class HomeViewModel (private val apiService: ApiService): BaseViewModel() {
                 }
 
             })
+        return charactersLiveData;
     }
 
-    fun getCharactersLiveData() : LiveData<List<Characters>> {
-        return charactersLiveData
-    }
+
 }
