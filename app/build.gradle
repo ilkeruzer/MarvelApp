@@ -17,10 +17,32 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", "\"https://gateway.marvel.com:443/v1/public/\""
+            buildConfigField "String", "PRIVATE_KEY", "\"b58969faa739dca1880ffc91c2585697dcab29b1\""
+            buildConfigField "String", "PUBLIC_KEY", "\"1a2f5476f6d06006f7a0ee829bfbb3c3\""
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", "\"https://gateway.marvel.com:443/v1/public/\""
+            buildConfigField "String", "PRIVATE_KEY", "\"b58969faa739dca1880ffc91c2585697dcab29b1\""
+            buildConfigField "String", "PUBLIC KEY", "\"1a2f5476f6d06006f7a0ee829bfbb3c3\""
         }
+    }
+
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
+
+    viewBinding {
+        enabled = true
     }
 
 }
@@ -31,7 +53,45 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Navigation Component
+    def nav_version = "2.3.0-alpha06"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Stable Koin Version
+    def koin_version = "2.1.5"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    //Lifecycle
+    def lifecycle_version = "2.2.0"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //Retrofit
+    def retrofitVersion = '2.8.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //MD5 Hash
+    implementation 'com.github.ihimanshurawat:Hasher:1.2'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+
+
 }
