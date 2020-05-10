@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view
+package com.ilkeruzer.marvel.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

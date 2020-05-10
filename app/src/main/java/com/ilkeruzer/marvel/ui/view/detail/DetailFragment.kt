@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view.detail
+package com.ilkeruzer.marvel.ui.view.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.ilkeruzer.marvel.base.IBaseListener
 import com.ilkeruzer.marvel.databinding.FragmentDetailBinding
 import com.ilkeruzer.marvel.model.Comics
 import com.ilkeruzer.marvel.util.ImageLoader
-import com.ilkeruzer.marvel.view.adapter.ComicsAdapter
+import com.ilkeruzer.marvel.ui.adapter.ComicsAdapter
 import org.koin.android.ext.android.inject
 
 /**
@@ -52,27 +52,13 @@ class DetailFragment : BaseFragment<DetailViewModel>(), IBaseListener.Adapter<Co
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments != null) {
-            id = requireArguments().getInt(ARG_PARAM1)
-            name = requireArguments().getString(ARG_PARAM2)
-            image = requireArguments().getString(ARG_PARAM3)
-            description = requireArguments().getString(ARG_PARAM4)
-            println("id : $id")
-            println("name : $name")
-            println("image : $image")
-            println("description : $description")
+        setCharacter()
+        initRecycler()
+        allComics()
 
-            image?.let { ImageLoader.normalImage(binding.imageView, it) }
-            name?.let { binding.nameText.text = it }
-            description?.let { binding.descText.text = it }
-        }
+    }
 
-        id?.let { viewModel.getComics(it) }
-
-        binding.recList.setRecyclerView(true)
-        adapter = ComicsAdapter(list,this)
-        binding.recList.adapter = adapter
-
+    private fun allComics() {
         viewModel.getComicsLiveData().observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) binding.errorText.visibility = View.VISIBLE
             binding.progress.visibility = View.GONE
@@ -80,6 +66,27 @@ class DetailFragment : BaseFragment<DetailViewModel>(), IBaseListener.Adapter<Co
             adapter.notifyDataSetChanged()
             it.forEach { it1 -> println("id: ${it1.id}") }
         })
+    }
+
+    private fun initRecycler() {
+        id?.let { viewModel.getComics(it) }
+
+        binding.recList.setRecyclerView(true)
+        adapter = ComicsAdapter(list,this)
+        binding.recList.adapter = adapter
+    }
+
+    private fun setCharacter() {
+        if (arguments != null) {
+            id = requireArguments().getInt(ARG_PARAM1)
+            name = requireArguments().getString(ARG_PARAM2)
+            image = requireArguments().getString(ARG_PARAM3)
+            description = requireArguments().getString(ARG_PARAM4)
+
+            image?.let { ImageLoader.normalImage(binding.imageView, it) }
+            name?.let { binding.nameText.text = it }
+            description?.let { binding.descText.text = it }
+        }
     }
 
     override fun onItemClick(item: Comics, position: Int) {

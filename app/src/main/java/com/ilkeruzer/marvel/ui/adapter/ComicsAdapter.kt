@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view.adapter
+package com.ilkeruzer.marvel.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

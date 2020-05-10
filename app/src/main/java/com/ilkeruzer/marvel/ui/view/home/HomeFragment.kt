@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view.home
+package com.ilkeruzer.marvel.ui.view.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.ilkeruzer.marvel.base.IBaseListener
 import com.ilkeruzer.marvel.custom.EndlessRecyclerOnScrollListener
 import com.ilkeruzer.marvel.databinding.FragmentHomeBinding
 import com.ilkeruzer.marvel.model.Characters
-import com.ilkeruzer.marvel.view.adapter.HomeAdapter
+import com.ilkeruzer.marvel.ui.adapter.HomeAdapter
 import org.koin.android.ext.android.inject
 
 

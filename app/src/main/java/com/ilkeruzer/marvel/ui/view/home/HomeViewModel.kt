@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view.home
+package com.ilkeruzer.marvel.ui.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

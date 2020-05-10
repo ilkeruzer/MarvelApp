@@ -1,4 +1,4 @@
-package com.ilkeruzer.marvel.view
+package com.ilkeruzer.marvel.ui.view
 
 import android.content.Intent
 import android.os.Bundle
